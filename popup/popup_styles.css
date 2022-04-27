@@ -1,0 +1,55 @@
+html, body {
+    width: 330px;
+  } 
+  .hidden {
+    display: none;
+  }
+  .field {
+    margin: 3% auto;
+    padding: 4px;
+    font-size: 0.5em;
+    padding-bottom: 20px;
+  }
+  div p {
+      text-align: center;
+  }
+  .popup-content {
+    width: 100%;
+    overflow: visible;
+    text-align: center;
+    background-color: #a3a3a3;
+    border: 3px;
+    border-color: black;
+    border-style: solid; 
+  }
+  .escriu{
+      width: 75%;
+      padding-right: 10px;
+      padding-left: 0px;
+      border-radius: 10px;
+  }
+  .camp{
+      width: 25%;
+      padding-left: 10px;
+  }
+  .in{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+  }
+  .button {
+      border-radius: 25px;
+      font-size: 1.5em;
+      padding: 10px;
+      width: 60%;
+      text-align: center;
+  }
+  .aplica {
+    background-color: #18b913;
+    margin-bottom: 7px;
+
+  }
+  .aplica:hover {
+    background-color: #32e92b;
+  }
