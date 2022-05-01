@@ -20,7 +20,8 @@
   creaSC(llista[0])
 }*/
 
-function acceptaCookies(){  //detecció banner cookies
+
+function manageCookies(){  //detecció banner cookies
   var banner =document.getElementById('aviso-cookies');   //aqui podriem posar el nom del banner que podem trobar a les llistes que hem vist a la docu(en forma de variable)
   var buttons = banner.getElementsByTagName('button');    //busquem els botons que hi ha dins el banner
   
@@ -67,31 +68,53 @@ function creaSC(ac){  //genera SC i fa deploy
 
 function comprovaWallet(wallet){
   if(typeof(wallet)!="undefined"){
-    if(acceptaCookies())creaSC(wallet)
+    browser.storage.local.get(['preferencies']).then( //prenem el valor de preferències introduit per l'user
+        res =>{ preferencies=res.preferencies,
+          preferencies=parseInt(preferencies, 10);
+          if(preferencies>0 && preferencies<5){
+            if(manageCookies()){ //si s'ha pogut dur a terme l'acció, crea un SC
+              creaSC(wallet) 
+            }
+          } 
+          else console.log("Info Plugin Eduard: si vols que el plugin gestioni les teves cookies has d'introduïr el nivell de preferències al pop-up!")                       
+        }); 
+    
   }
   else console.log("Info Plugin Eduard: si vols que el plugin gestioni les teves cookies has d'introduïr l'adreça de la teva Wallet al pop-up!")
 }
 
 
-//Inici del "main"
+function gotCookies(vendor){
+  console.log("ha entrat bc "+vendor)
+  var wallet; 
+  Web3 = require('web3')
+  var url = 'HTTP://192.168.10.7:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
+  web3 = new Web3(url)  // ens connectem a Ganache
+  browser.storage.local.get(['wallet']).then(
+    res =>{ wallet=res.wallet,
+      comprovaWallet(wallet)  // ho fem aixi per tenir certesa de que la funcio rebrà wallet amb el valor que toca.                            
+    });                       // si ho fem a una instrucció fora d'aquest "scope" no sabem si hauà carregat el valor a temps
+}
 
-var wallet; 
-Web3 = require('web3')
-var url = 'HTTP://192.168.10.7:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
-web3 = new Web3(url)  // ens connectem a Ganache
-browser.storage.local.get(['wallet']).then(
-  res =>{ wallet=res.wallet,
-    comprovaWallet(wallet)  // ho fem aixi per tenir certesa de que la funcio rebrà wallet amb el valor que toca.                            
-  });                       // si ho fem a una instrucció fora d'aquest "scope" no sabem si hauà carregat el valor a temps
+
+function testForCookies(request, sender, sendResponse) {
+  if (request) {
+    console.log("Info plugin Eduard: "+request)
+    browser.runtime.onMessage.removeListener(testForCookies);
+    gotCookies(request)
+  } 
+}
+
+//Inici del "main"
+browser.runtime.onMessage.addListener(testForCookies);
+                    
 
 
 
 /*browser.storage.local.get(['keystore'], function(result) {
   console.log("Keystore: "+result.keystore)
 });
-browser.storage.local.get(['preferencies'], function(result) {
-  console.log("Preferencies: "+result.preferencies)
-});*/
+*/
 
 
 //per més tard. Detecta l'element de la web que està més al davant de tots(cookie banner)
