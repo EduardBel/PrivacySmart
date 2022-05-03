@@ -29,7 +29,7 @@
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["browserified-content.js"]
+        "js": ["web3.min.js","vendor_scripts/cookiebot.js","scripts.js","vendor_scripts/didomi.js","content.js"]
       }
     ]
     

@@ -21,26 +21,19 @@
 }*/
 
 
-function manageCookies(){  //detecció banner cookies
-  var banner =document.getElementById('aviso-cookies');   //aqui podriem posar el nom del banner que podem trobar a les llistes que hem vist a la docu(en forma de variable)
-  var buttons = banner.getElementsByTagName('button');    //busquem els botons que hi ha dins el banner
-  
-  for (var i = 0, len = buttons.length; i < len; ++i) {
-      //console.log(buttons[i].id)
-      //estaria be mirar aqui quin botó pot ser el d'acceptar/ rebutjar/configurar.
-      // de moment com sols hi ha el d'acceptar a la web cutre el poso a una variable directament
-      boto_acceptar_web_test = buttons[0].id  // ens quedem amb el boto d'acceptar
+function manageCookies(vendor){  //detecció banner cookies
+  var ret
+  switch(vendor){
+    case "cookiebot": ret=cookiebot(preferencies)
+      break;
+      case "didomi": ret=didomi(preferencies)
+      break;
+    default: console.log("NO ES COOKIEBOT")
+              ret=0
+    break;
   }
-
-  var button = document.getElementById(boto_acceptar_web_test);
-  let estat=false
-  if(document.cookie.length==0){  //en cas que no hi hagi cookies desades
-    button.click()  //cliquem el boto
-    console.log("Info Plugin Eduard: hem acceptat les cookies per tu")
-    estat=true
-  } 
-  else estat=false
-  return estat
+  
+  return ret
 }
 
 
@@ -66,13 +59,13 @@ function creaSC(ac){  //genera SC i fa deploy
 }
 
 
-function comprovaWallet(wallet){
+function comprovaWallet(wallet,vendor){
   if(typeof(wallet)!="undefined"){
     browser.storage.local.get(['preferencies']).then( //prenem el valor de preferències introduit per l'user
         res =>{ preferencies=res.preferencies,
           preferencies=parseInt(preferencies, 10);
           if(preferencies>0 && preferencies<5){
-            if(manageCookies()){ //si s'ha pogut dur a terme l'acció, crea un SC
+            if(manageCookies(vendor)){ //si s'ha pogut dur a terme l'acció, crea un SC
               creaSC(wallet) 
             }
           } 
@@ -87,12 +80,12 @@ function comprovaWallet(wallet){
 function gotCookies(vendor){
   console.log("ha entrat bc "+vendor)
   var wallet; 
-  Web3 = require('web3')
+  //Web3 = require('web3')
   var url = 'HTTP://192.168.10.7:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
   web3 = new Web3(url)  // ens connectem a Ganache
   browser.storage.local.get(['wallet']).then(
     res =>{ wallet=res.wallet,
-      comprovaWallet(wallet)  // ho fem aixi per tenir certesa de que la funcio rebrà wallet amb el valor que toca.                            
+      comprovaWallet(wallet,vendor)  // ho fem aixi per tenir certesa de que la funcio rebrà wallet amb el valor que toca.                            
     });                       // si ho fem a una instrucció fora d'aquest "scope" no sabem si hauà carregat el valor a temps
 }
 
@@ -114,26 +107,4 @@ browser.runtime.onMessage.addListener(testForCookies);
 /*browser.storage.local.get(['keystore'], function(result) {
   console.log("Keystore: "+result.keystore)
 });
-*/
-
-
-//per més tard. Detecta l'element de la web que està més al davant de tots(cookie banner)
-/*
-function maximoZindex(){
-    var max = 0;
-    let from = document.body.innerHTML//$("body")
-    console.log(from)
-    from.find(">*").each(function(i, e){    //bucle que busca el final de cada tag
-        console.log("test")
-      var z = Number($(e).css("z-index"));
-      if(z > max) {
-        max = z;
-      }
-    });
-    console.log(max)
-    return max;
-  }
-  
-  console.log("maximo z-index a partir de body", maximoZindex());
-
 */
