@@ -20,20 +20,18 @@
   creaSC(llista[0])
 }*/
 
-
-function manageCookies(vendor){  //detecció banner cookies
-  var ret
+async function manageCookies(vendor){  //detecció banner cookies
+  var ret=false
   switch(vendor){
-    case "cookiebot": ret=cookiebot(preferencies)
+    case "cookiebot": return await cookiebot(preferencies)
       break;
-      case "didomi": ret=didomi(preferencies)
+      case "didomi": return await didomi(preferencies);
       break;
-    default: console.log("NO ES COOKIEBOT")
-              ret=0
+    default: console.log("Info Plugin Eduard: No és cap vendor controlat")
+              return 0
     break;
   }
   
-  return ret
 }
 
 
@@ -59,15 +57,15 @@ function creaSC(ac){  //genera SC i fa deploy
 }
 
 
-function comprovaWallet(wallet,vendor){
+async function comprovaWallet(wallet,vendor){
   if(typeof(wallet)!="undefined"){
     browser.storage.local.get(['preferencies']).then( //prenem el valor de preferències introduit per l'user
-        res =>{ preferencies=res.preferencies,
+        async res =>{ preferencies=res.preferencies,
           preferencies=parseInt(preferencies, 10);
           if(preferencies>0 && preferencies<5){
-            if(manageCookies(vendor)){ //si s'ha pogut dur a terme l'acció, crea un SC
-              creaSC(wallet) 
-            }
+            await manageCookies(vendor).then(ret =>{ //si s'ha pogut dur a terme l'acció, crea un SC
+              if(ret==1)creaSC(wallet) 
+          });
           } 
           else console.log("Info Plugin Eduard: si vols que el plugin gestioni les teves cookies has d'introduïr el nivell de preferències al pop-up!")                       
         }); 
@@ -78,7 +76,7 @@ function comprovaWallet(wallet,vendor){
 
 
 function gotCookies(vendor){
-  console.log("ha entrat bc "+vendor)
+  //console.log("ha entrat bc "+vendor)
   var wallet; 
   //Web3 = require('web3')
   var url = 'HTTP://192.168.10.7:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
@@ -99,9 +97,23 @@ function testForCookies(request, sender, sendResponse) {
 }
 
 //Inici del "main"
-browser.runtime.onMessage.addListener(testForCookies);
-                    
 
+//browser.runtime.onMessage.addListener(testForCookies);
+                    
+"use strict";
+
+
+
+function handleMessage(request, sender, sendResponse) {
+  if(request){
+    browser.runtime.onMessage.removeListener(handleMessage);
+    //console.log("Info plugin Eduard: "+request)
+    gotCookies(request)
+    return Promise.resolve({response: "Hi from content script"});
+  }
+}
+
+browser.runtime.onMessage.addListener(handleMessage);
 
 
 /*browser.storage.local.get(['keystore'], function(result) {

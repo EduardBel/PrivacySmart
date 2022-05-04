@@ -30,5 +30,5 @@ function clickAllElements(selector) {
 
 async function waitUntilFoundAndClick(selector){
         await waitUntilFound(selector);
-        clickAllElements(selector);
+        clickAllElements(selector);  //aixi espera a que s'hagi clicat tot per fer SCS
     }
