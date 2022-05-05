@@ -32,3 +32,27 @@ async function waitUntilFoundAndClick(selector){
         await waitUntilFound(selector);
         clickAllElements(selector);  //aixi espera a que s'hagi clicat tot per fer SCS
     }
+
+
+async function waitForAny(selector){
+    return new Promise((resolve) => {
+        function callback(document) {
+            for (const property in selector) {
+                if (document.querySelector(selector[property])) {
+                    observer.disconnect();
+                    resolve(property);
+                }
+              }
+        }
+        const observer = new MutationObserver(() => {
+            callback(document);
+        });
+
+        observer.observe(document.querySelector('html'), {
+            subtree: true,
+            childList: true,
+            attributes: true,
+        });
+        callback(document);
+    })
+}

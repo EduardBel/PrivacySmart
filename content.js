@@ -1,31 +1,9 @@
-/*function ConnectREST(url){  //ja innecessària
-    var data = {username: 'example'};
-     fetch(url, {
-      method: 'POST', // or 'PUT'
-      body: JSON.stringify(data), // data can be `string` or {object}!  headers:{
-        'Content-Type': 'application/json'
-      }
-    ).then(res => res.text())
-    .then((res) => {
-        console.log(res)
-    })
-    .catch(error => console.error('Error:', error))
-}
-*/
-//ConnectREST('http://192.168.10.6:3000/test'); //direcció wallet
-//ConnectREST('http://192.168.10.7:3000/test'); //direcció BC
-//const { createSecureContext } = require('tls')
-/*async function ComencaSC() { //funcio totalment innecessaria
-  var llista = await web3.eth.getAccounts() //agafem les direccions que ha generat Ganache
-  creaSC(llista[0])
-}*/
-
 async function manageCookies(vendor){  //detecció banner cookies
   var ret=false
   switch(vendor){
-    case "cookiebot": return await cookiebot(preferencies)
+    case "Cookiebot": return await cookiebot(preferencies)
       break;
-      case "didomi": return await didomi(preferencies);
+      case "Didomi": return await didomi(preferencies);
       break;
     default: console.log("Info Plugin Eduard: No és cap vendor controlat")
               return 0
@@ -76,9 +54,7 @@ async function comprovaWallet(wallet,vendor){
 
 
 function gotCookies(vendor){
-  //console.log("ha entrat bc "+vendor)
   var wallet; 
-  //Web3 = require('web3')
   var url = 'HTTP://192.168.10.7:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
   web3 = new Web3(url)  // ens connectem a Ganache
   browser.storage.local.get(['wallet']).then(
@@ -88,32 +64,20 @@ function gotCookies(vendor){
 }
 
 
-function testForCookies(request, sender, sendResponse) {
-  if (request) {
-    console.log("Info plugin Eduard: "+request)
-    browser.runtime.onMessage.removeListener(testForCookies);
-    gotCookies(request)
-  } 
+const list = {  //patterns that match cookie vendors network requests
+  "Cookiebot" : ["#CybotCookiebotDialogBody"],
+  "Didomi" : ["#didomi-host"]
+}
+async function waitForBanner() {
+  await waitForAny(list).then((successMessage) => {
+    console.log("Info plugin Eduard: hem trobat un banner de " + successMessage);
+    gotCookies(successMessage)
+  });
+
 }
 
 //Inici del "main"
-
-//browser.runtime.onMessage.addListener(testForCookies);
-                    
-"use strict";
-
-
-
-function handleMessage(request, sender, sendResponse) {
-  if(request){
-    browser.runtime.onMessage.removeListener(handleMessage);
-    //console.log("Info plugin Eduard: "+request)
-    gotCookies(request)
-    return Promise.resolve({response: "Hi from content script"});
-  }
-}
-
-browser.runtime.onMessage.addListener(handleMessage);
+waitForBanner();
 
 
 /*browser.storage.local.get(['keystore'], function(result) {

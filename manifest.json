@@ -4,7 +4,7 @@
     "name": "Plugin TFG",
     "version": "1.0",
     
-    "description": "Intentant que funcioni web3.",
+    "description": "Canviant manera de detectar vendor.",
     "icons": {
       "48": "icons/border-48.png"
     },
@@ -23,10 +23,6 @@
         "webNavigation",
         "<all_urls>"
     ],
-    "background": {
-      "scripts": ["background/background.js"],
-      "persistent": false
-    },
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
