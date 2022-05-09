@@ -7,6 +7,8 @@ async function manageCookies(vendor){  //detecció banner cookies
     break;
     case "CookieYes": return await cookieyes(preferencies);
     break;
+    case "CookieNotice": return await cookienotice(preferencies);
+    break;
     default: console.log("Info Plugin Eduard: No és cap vendor controlat")
               return 0
     break;
@@ -69,7 +71,8 @@ function gotCookies(vendor){
 const list = {  //patterns that match cookie vendors network requests
   "CookieBot" : ["#CybotCookiebotDialogBody"],
   "Didomi" : ["#didomi-host"],
-  "CookieYes" : ["#cookie-law-info-bar"]
+  "CookieYes" : ["#cookie-law-info-bar"],
+  "CookieNotice" : ["#cookie-notice"]
 }
 async function waitForBanner() {
   await waitForAny(list).then((successMessage) => {
