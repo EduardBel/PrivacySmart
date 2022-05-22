@@ -30,6 +30,7 @@
                 "scripts.js",
                 "vendor_scripts/cookieyes.js",
                 "vendor_scripts/cookienotice.js",
+                "vendor_scripts/onetrust.js",
                 "vendor_scripts/cookiebot.js",
                 "vendor_scripts/didomi.js",
                 "content.js"]

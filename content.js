@@ -9,6 +9,8 @@ async function manageCookies(vendor){  //detecció banner cookies
     break;
     case "CookieNotice": return await cookienotice(preferencies);
     break;
+    case "OneTrust": return await onetrust(preferencies);
+    break;
     default: console.log("Info Plugin Eduard: No és cap vendor controlat")
               return 0
     break;
@@ -72,7 +74,8 @@ const list = {  //patterns that match cookie vendors network requests
   "CookieBot" : ["#CybotCookiebotDialogBody"],
   "Didomi" : ["#didomi-host"],
   "CookieYes" : ["#cookie-law-info-bar"],
-  "CookieNotice" : ["#cookie-notice"]
+  "CookieNotice" : ["#cookie-notice"],
+  "OneTrust" : ["#onetrust-banner-sdk"]
 }
 async function waitForBanner() {
   await waitForAny(list).then((successMessage) => {
