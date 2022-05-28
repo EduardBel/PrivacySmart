@@ -49,35 +49,37 @@ function listenForClicks() {
         web3 = new Web3(url)  // ens connectem a Ganache
         let abi = '[{"inputs":[{"internalType":"uint8","name":"_val","type":"uint8"},{"internalType":"string","name":"_s","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"whichPreference","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"whichWeb","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]'
         var notorizedContract=new web3.eth.Contract(JSON.parse(abi))
-        notorizedContract.options.address=trans
-        notorizedContract.methods.whichPreference().call() // imprimim el paràmetre que hi ha dins de l'SC
-        .then(pref => { console.log("La preferencia era: "+pref)
-                        llista.innerHTML=llista.innerHTML + "<span class: 'field in'>El consentiment que es es va donar és: "+pref+"</span>"
-                        var x = document.getElementById("consultaTransaccio");
-                        x.style.display = "block";
-        });
+        
+        try{
+          notorizedContract.options.address=trans
+          notorizedContract.methods.whichPreference().call() // imprimim el paràmetre que hi ha dins de l'SC
+          .then(pref => { console.log("La preferencia era: "+pref)
+                          llista.innerHTML=llista.innerHTML + "<span class: 'field in'>El consentiment que es es va donar és: "+pref+"</span>"
+                          var x = document.getElementById("consultaTransaccio");
+                          x.style.display = "block";
+          });
+      }catch(e){var llista = document.getElementById("consultaTransaccio")
+                llista.innerHTML=llista.innerHTML + "<span class: 'field in'>Hi ha hagut un error: "+e+"</span>"
+                var x = document.getElementById("consultaTransaccio");
+                x.style.display = "block";}
       }
      
     }
     if (e.target.classList.contains("aplica")) {  //si el que s'ha clicat és el botó d'aplicar cridem la funció
       browser.tabs.query({active: true, currentWindow: true})
         .then(clica)
-        .catch(reportError);
     }
     if (e.target.classList.contains("consulta")) {  //si el que s'ha clicat és el botó de consultar cridem la funció
       browser.tabs.query({active: true, currentWindow: true})
         .then(consulta)
-        .catch(reportError);
     }
     if (e.target.classList.contains("torna")) {  //si el que s'ha clicat és el botó de consultar cridem la funció
       browser.tabs.query({active: true, currentWindow: true})
         .then(torna)
-        .catch(reportError);
     }
     if (e.target.classList.contains("transaction")) {  //si el que s'ha clicat és el botó de consultar cridem la funció
       browser.tabs.query({active: true, currentWindow: true})
         .then(transaction)
-        .catch(reportError);
     }
   });
 }

@@ -29,6 +29,8 @@ async function creaSC(ac){  //genera SC i fa deploy
   console.log("Info Plugin Eduard: Estimant cost de la transacció")
   const estimatedGas = await notorizedContract.deploy(({data:bytecode, arguments:[preferencies,window.location.href]})).estimateGas();
   console.log("Info Plugin Eduard: El gas estimat és "+estimatedGas)
+  
+try{
   notorizedContract.deploy({data:bytecode, arguments:[preferencies,window.location.href]}) //fa deploy amb les dades
   .send({
     from:ac,
@@ -48,6 +50,7 @@ async function creaSC(ac){  //genera SC i fa deploy
                   browser.storage.local.set({"webPagesTFG": webActual})
           });
   });
+}catch(e){console.log("Info Plugin Eduard: "+e)}
 }
 
 
