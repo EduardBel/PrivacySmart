@@ -22,14 +22,23 @@ html, body {
     border-color: black;
     border-style: solid; 
   }
+  .consent-content {
+    width: 100%;
+    overflow: visible;
+    text-align: left;
+    background-color: #a3a3a3;
+    border: 3px;
+    border-color: black;
+    border-style: solid; 
+  }
   .escriu{
-      width: 75%;
+      width: 69%;
       padding-right: 10px;
       padding-left: 0px;
       border-radius: 10px;
   }
   .camp{
-      width: 25%;
+      width: 31%;
       padding-left: 10px;
   }
   .in{
@@ -44,6 +53,51 @@ html, body {
       padding: 10px;
       width: 60%;
       text-align: center;
+  }
+  .consulta_button {
+    border-radius: 25px;
+    font-size: 1em;
+    padding: 10px;
+    width: 55%;
+    text-align: center;
+}
+.transaction_button {
+  border-radius: 25px;
+  font-size: 1.8em;
+  padding-left: 10px;
+  width: 31%;
+  text-align: center;
+}
+.back_button {
+  border-radius: 25px;
+  font-size: 1em;
+  padding: 10px;
+  width: 30%;
+  text-align: center;
+}
+.transaction {
+  background-color: #cce929;
+  margin-bottom: 7px;
+
+}
+.transaction:hover {
+  background-color: #d8ec62;
+}
+  .consulta {
+    background-color: #295ce9;
+    margin-bottom: 7px;
+
+  }
+  .consulta:hover {
+    background-color: #577ee9;
+  }
+  .torna {
+    background-color: #ad2c57;
+    margin-left: 10px;
+
+  }
+  .torna:hover {
+    background-color: #aa4869;
   }
   .aplica {
     background-color: #18b913;

@@ -1,4 +1,6 @@
 async function cookieyes(preferencies) {
+    return new Promise(async (resolve) => {
+
     if(document.cookie.match("PluginTFG")){
         console.log("Info Plugin Eduard: les cookies d'aquest lloc ja havien estat manegades")
         return 0
@@ -6,16 +8,16 @@ async function cookieyes(preferencies) {
     else{
         await waitUntilFixed('#cookie-law-info-bar').then(async ()=>{
             if(preferencies==4){
-                await waitUntilFoundAndClick(".cookie_action_close_header");    //acceptem tot
+                await waitUntilFoundAndClick(".cookie_action_close_header")  //acceptem tot
                 setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
                 console.log("Info Plugin Eduard: hem acceptat les cookies per tu")
-                return 1
+                resolve(1);
             }
             else {
                 if(document.querySelector('.cli_settings_button')== null){
                         document.getElementById('cookie-law-info-bar').style.position="relative"    //fa que s'amagui el banner
                         console.log("Info Plugin Eduard: com sols es pot acceptar, hem amagat el banner")
-                        return 0    
+                        resolve(0);   
                 } 
                 else{
                     //hi ha boto de settings
@@ -36,7 +38,7 @@ async function cookieyes(preferencies) {
                         await waitUntilFoundAndClick("#wt-cli-privacy-save-btn");   //apliquem la configuracio
                         setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
                         console.log("Info Plugin Eduard: hem acceptat les cookies però denegat els vendors per tu")
-                        return 1
+                        resolve(1);
                         
                     }
                     else if(preferencies==2){   //rebutjar socis, rebutjar algunes(perfil i tal)
@@ -48,16 +50,18 @@ async function cookieyes(preferencies) {
                         await waitUntilFoundAndClick("#wt-cli-privacy-save-btn");   //apliquem la configuracio
                         setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
                         console.log("Info Plugin Eduard: hem denegat els vendors i les cookies de perfil per tu")
-                        return 1             
+                        resolve(1);             
                     }
                     else{   //preferencies = 1 rebutjar TOT
                         await waitUntilFoundAndClick("#wt-cli-privacy-save-btn");   //apliquem la configuracio
                         setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
                         console.log("Info Plugin Eduard: hem denegat les cookies per tu")
-                        return 1
+                        resolve(1);
                     }
                 } 
             }
         });
     } 
+})
+
 }

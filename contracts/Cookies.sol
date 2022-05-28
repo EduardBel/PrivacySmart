@@ -14,4 +14,7 @@ contract Cookies {
     function whichWeb() external view returns(string memory){
         return web;
     }
+    function whichPreference() external view returns(uint8){
+        return val;
+    }
 }

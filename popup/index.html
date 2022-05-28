@@ -5,26 +5,38 @@
     <link rel="stylesheet" href="popup_styles.css"/>
   </head>
 <body>
-  <div>
-    <div class="popup-content" id="popup-content">
-      <p><b>Insereix la informació necessària</b></p>
-      <div class="field in">
-          <h1 class="camp">Wallet</h1>
-          <input id="wallet" class="escriu" type="text" placeholder=" Direcció de la teva Wallet"></input>
-      </div>
-      <div class="field in">
-          <h1 class="camp">Keystore</h1>
-          <input id="keystore" class="escriu" type="text" placeholder=" Ruta del Keystore"></input>
-      </div>
-      <div class="field in">
-          <h1 class="camp">Preferències</h1>
+    <div id="contingut" style="display: block;">
+      <div class="popup-content" id="popup-content">
+        <p><b>Insereix la informació necessària</b></p>
+        <div class="field in">
+            <h1 class="camp">Wallet</h1>
+            <input id="wallet" class="escriu" type="text" placeholder=" Direcció de la teva Wallet"></input>
+        </div>
+        <div class="field in">
+          <h1 class="camp">Privacitat</h1>
           <input id="preferencies" class="escriu" type="text" placeholder=" Preferència de seguretat"></input>
+        </div>
+        <div class="field in">
+          <button id="transaction" class="transaction_button transaction">Consulta transacció</button>
+            <input id="IDTransaccio" class="escriu" type="text" placeholder=" Indica l'ID de la transacció"></input>
+        </div>
+        <div id="consultaTransaccio" style="display: none;">
+          
+        </div>
+        <button id="consulta" class="consulta_button consulta">Consulta consentiment</button>
+        <button id="boto_aplica" class="button aplica">Aplica</button>
       </div>
-      
-      <button id="boto_aplica" class="button aplica">Aplica</button>
     </div>
-  </div>
-  <script src="popup_index.js"></script>
+    <div id="transaccions" style="display: none; width: 100%;text-align: center;">
+      <div class="consent-content">
+        <p><b>Consentiments</b></p>
+        <button id="tornar" class="back_button torna">Tornar</button>
+        <ul id="llista_consent">
+        </ul>
+      </div>
+    </div>
+<script src="../web3.min.js"></script>
+<script src="popup_index.js"></script>
 </body>
 </html>
 
