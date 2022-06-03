@@ -73,7 +73,7 @@ async function comprovaWallet(wallet,vendor){
 
 function gotCookies(vendor){
   var wallet; 
-  var url = 'HTTP://192.168.10.7:7545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
+  var url = 'HTTP://127.0.0.1:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
   web3 = new Web3(url)  // ens connectem a Ganache
   browser.storage.local.get(['wallet']).then(
     res =>{ wallet=res.wallet,
@@ -92,9 +92,12 @@ const list = {  //patterns that match cookie vendors network requests
 
 
 async function waitForBanner() {
-  await waitForAny(list).then((successMessage) => {
-    console.log("Info plugin Eduard: hem trobat un banner de " + successMessage);
-    gotCookies(successMessage)
+  await timeoutCall(list).then((successMessage) => {
+    if(successMessage!=="not found"){
+      console.log("Info plugin Eduard: hem trobat un banner de " + successMessage);
+      gotCookies(successMessage)
+    }
+    else console.log("Info plugin Eduard: no hem trobat cap banner de cookies controlat pel plug-in")
   });
 
 }

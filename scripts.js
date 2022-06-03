@@ -76,8 +76,9 @@ async function waitUntilFoundAndClick(selector){
     }
 
 
-async function waitForAny(selector){
+ function waitForAny(selector){
     return new Promise((resolve) => {
+        setTimeout(function(){
         function callback(document) {
             for (const property in selector) {
                 if (document.querySelector(selector[property])) {
@@ -96,8 +97,21 @@ async function waitForAny(selector){
             attributes: true,
         });
         callback(document);
+    },1000)
     })
 }
+
+async function timeoutCall(selector){
+    return new Promise((resolve)=>{
+      const timeoutID = setTimeout(function(){
+          resolve("not found")
+      },1200)
+      waitForAny(selector).then(result=>{
+         clearTimeout(timeoutID)
+         resolve(result)
+      })
+    });
+  }
 
 function setCookie(cname, cvalue, exdays) {
 	const d = new Date();
