@@ -24,13 +24,14 @@ async function creaSC(ac){  //genera SC i fa deploy
   
   console.log("Info Plugin Eduard: S'ha accedit als documents!")
   //crea instancia de SC
+  try{
   var notorizedContract=new web3.eth.Contract(JSON.parse(abi))
 
   console.log("Info Plugin Eduard: Estimant cost de la transacció")
   const estimatedGas = await notorizedContract.deploy(({data:bytecode, arguments:[preferencies,window.location.href]})).estimateGas();
   console.log("Info Plugin Eduard: El gas estimat és "+estimatedGas)
   
-try{
+
   notorizedContract.deploy({data:bytecode, arguments:[preferencies,window.location.href]}) //fa deploy amb les dades
   .send({
     from:ac,
@@ -50,7 +51,7 @@ try{
                   browser.storage.local.set({"webPagesTFG": webActual})
           });
   });
-}catch(e){console.log("Info Plugin Eduard: "+e)}
+}catch(e){console.log("Info Plugin Eduard: Hi ha hagut algun error en relació a la connexió a la Blockchain. "+e)}
 }
 
 
