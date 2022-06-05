@@ -1,5 +1,6 @@
 html, body {
     width: 330px;
+    font-family: "Roboto Mono", monospace;
   } 
   .hidden {
     display: none;
@@ -9,6 +10,7 @@ html, body {
     padding: 4px;
     font-size: 0.5em;
     padding-bottom: 20px;
+    
   }
   div p {
       text-align: center;
@@ -17,7 +19,8 @@ html, body {
     width: 100%;
     overflow: visible;
     text-align: center;
-    background-color: #a3a3a3;
+    background: rgb(255,255,255);
+    background: linear-gradient(349deg, rgba(255,255,255,1) 0%, rgba(50,195,255,1) 0%, rgba(255,255,255,1) 100%);
     border: 3px;
     border-color: black;
     border-style: solid; 
@@ -26,20 +29,22 @@ html, body {
     width: 100%;
     overflow: visible;
     text-align: left;
-    background-color: #a3a3a3;
     border: 3px;
     border-color: black;
-    border-style: solid; 
+    border-style: solid;
+    background: rgb(255,255,255);
+    background: linear-gradient(349deg, rgba(255,255,255,1) 0%, rgba(50,195,255,1) 0%, rgba(255,255,255,1) 100%);
   }
   .escriu{
       width: 69%;
       padding-right: 10px;
       padding-left: 0px;
       border-radius: 10px;
+      margin-right: 10px !important;
+      height: 37px;
   }
   .camp{
-      width: 31%;
-      padding-left: 10px;
+      width: 31%;;
   }
   .in{
         width: 100%;
@@ -47,29 +52,37 @@ html, body {
         flex-direction: row;
         justify-content: center;
   }
-  .button {
-      border-radius: 25px;
+  button {
+      font-family: inherit;
       font-size: 1.5em;
       padding: 10px;
       width: 60%;
       text-align: center;
+      font-weight: 200;
+      letter-spacing: 1px;
+      padding: 13px 50px 13px;
+      outline: 0;
+      border: 1px solid black;
+      cursor: pointer;
+      position: relative;
+      background-color: rgba(0, 0, 0, 0);
+      border-radius: 5px;
   }
   .consulta_button {
-    border-radius: 25px;
     font-size: 1em;
     padding: 10px;
     width: 55%;
     text-align: center;
 }
 .transaction_button {
-  border-radius: 25px;
-  font-size: 1.8em;
+  font-size: 1.7em;
   padding-left: 10px;
+  margin: 2%;
+  margin-top: 0px;
   width: 31%;
   text-align: center;
 }
 .back_button {
-  border-radius: 25px;
   font-size: 1em;
   padding: 10px;
   width: 30%;
@@ -106,4 +119,8 @@ html, body {
   }
   .aplica:hover {
     background-color: #32e92b;
+  }
+
+  ul li {
+    margin-bottom: 5px;
   }

@@ -45,7 +45,7 @@ function listenForClicks() {
       if(trans!=''){  //si esta correcte
         var llista = document.getElementById("consultaTransaccio")
         llista.innerHTML=""//buidem consentiment donat a la transaccio concreta 
-        var url = 'HTTP://192.168.10.7:7545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
+        var url = 'HTTP://127.0.0.1:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
         web3 = new Web3(url)  // ens connectem a Ganache
         let abi = '[{"inputs":[{"internalType":"uint8","name":"_val","type":"uint8"},{"internalType":"string","name":"_s","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"whichPreference","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"whichWeb","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]'
         var notorizedContract=new web3.eth.Contract(JSON.parse(abi))
@@ -54,7 +54,7 @@ function listenForClicks() {
           notorizedContract.options.address=trans
           notorizedContract.methods.whichPreference().call() // imprimim el paràmetre que hi ha dins de l'SC
           .then(pref => { console.log("La preferencia era: "+pref)
-                          llista.innerHTML=llista.innerHTML + "<span class: 'field in'>El consentiment que es es va donar és: "+pref+"</span>"
+                          llista.innerHTML=llista.innerHTML + "<span class: 'field in'>El consentiment que es va donar és: "+pref+"</span>"
                           var x = document.getElementById("consultaTransaccio");
                           x.style.display = "block";
           });
