@@ -2,7 +2,7 @@ function listenForClicks() {
   document.addEventListener("click", (e) => {
     function clica(){
         let wallet=document.getElementById("wallet").value; //prenem el contingut del camp de text de wallet introduit
-        let IDTransaccio=document.getElementById("IDTransaccio").value;
+        //let IDTransaccio=document.getElementById("IDTransaccio").value;
         let preferencies=document.getElementById("preferencies").value;
         if(wallet!=''){ 
           browser.storage.local.get(['wallet']).then(
@@ -27,7 +27,11 @@ function listenForClicks() {
         browser.storage.local.get(['transactionIDsTFG'], function(result2) {
           var llista = document.getElementById("llista_consent")
           for(i in result.webPagesTFG){
-            llista.innerHTML=llista.innerHTML + "<li>"+result.webPagesTFG[i]+" : <input type='text' value="+result2.transactionIDsTFG[i]+ "</li>"
+            llista.innerHTML=llista.innerHTML + "<li>" +
+            result.webPagesTFG[i] +
+            " : <input type='text' value='" + result2.transactionIDsTFG[i] +
+            "'><button id='info' class='info_button info'>+ Info</button></li>"
+          
           }       
         });
       });
@@ -45,7 +49,7 @@ function listenForClicks() {
       if(trans!=''){  //si esta correcte
         var llista = document.getElementById("consultaTransaccio")
         llista.innerHTML=""//buidem consentiment donat a la transaccio concreta 
-        var url = 'HTTP://127.0.0.1:8545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
+        var url = 'HTTP://127.0.0.1:7545' // 8545 if using ganache-cli // 192.168.10.7 es la IP de la VM BlockChain
         web3 = new Web3(url)  // ens connectem a Ganache
         let abi = '[{"inputs":[{"internalType":"uint8","name":"_val","type":"uint8"},{"internalType":"string","name":"_s","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"whichPreference","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"whichWeb","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]'
         var notorizedContract=new web3.eth.Contract(JSON.parse(abi))
@@ -54,12 +58,12 @@ function listenForClicks() {
           notorizedContract.options.address=trans
           notorizedContract.methods.whichPreference().call() // imprimim el paràmetre que hi ha dins de l'SC
           .then(pref => { console.log("La preferencia era: "+pref)
-                          llista.innerHTML=llista.innerHTML + "<span class: 'field in'>El consentiment que es va donar és: "+pref+"</span>"
+                          llista.innerHTML=llista.innerHTML + "<span class: 'field in'>the given consent was: "+pref+"</span>"
                           var x = document.getElementById("consultaTransaccio");
                           x.style.display = "block";
           });
       }catch(e){var llista = document.getElementById("consultaTransaccio")
-                llista.innerHTML=llista.innerHTML + "<span class: 'field in'>Hi ha hagut un error: "+e+"</span>"
+                llista.innerHTML=llista.innerHTML + "<span class: 'field in'>There has been an error: "+e+"</span>"
                 var x = document.getElementById("consultaTransaccio");
                 x.style.display = "block";}
       }

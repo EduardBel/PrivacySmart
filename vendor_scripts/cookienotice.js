@@ -1,7 +1,7 @@
 async function cookienotice(preferencies) {
     return new Promise(async (resolve) => {
     if(document.cookie.match("PluginTFG")){
-        console.log("Info Plugin Eduard: les cookies d'aquest lloc ja havien estat manegades")
+        console.log("PrivacySmart: this website's cookies were already managed")
         resolve(0)
     } 
     else{
@@ -9,19 +9,19 @@ async function cookienotice(preferencies) {
             if(preferencies==4){
                 await waitUntilFoundAndClick("#cn-accept-cookie")    //acceptem tot
                 setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                console.log("Info Plugin Eduard: hem acceptat les cookies per tu")
+                console.log("PrivacySmart: cookies have been accepted for you")
                 resolve(1)
             }  
             else {
                 if(document.querySelector('#cn-refuse-cookie')== null){ //si no es pot rebutjar
                         document.querySelector('#cookie-notice').style.position = 'relative'    //fa que s'amagui el banner
-                        console.log("Info Plugin Eduard: com sols es pot acceptar, hem amagat el banner")
+                        console.log("PrivacySmart: this website's cookies can't be managed, so we hid the banner")
                         resolve(0)   
                 } 
                 else{   //hi ha boto de denegar
                     await waitUntilFoundAndClick("#cn-refuse-cookie");   //rebutjem
                     setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                    console.log("Info Plugin Eduard: hem denegat les cookies per tu")
+                    console.log("PrivacySmart: cookies have been refused for you")
                     resolve(1)                   
                 } 
             }

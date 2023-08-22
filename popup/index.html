@@ -7,32 +7,37 @@
 <body>
     <div id="contingut" style="display: block;">
       <div class="popup-content" id="popup-content">
-        <p><b>Insereix la informació necessària</b></p>
+        <p><b>PrivacySmart</b></p>
         <div class="field in">
-            <h1 class="camp">Wallet</h1>
-            <input id="wallet" class="escriu" type="text" placeholder=" Direcció de la teva Wallet"></input>
+            <h1 class="camp">Add New Key Pair</h1>
+            <input id="wallet" class="escriu" type="text" placeholder=" Insert Secret key"></input>
         </div>
+        <div class="field2 in">
+          <h1 class="camp">Privacy Level</h1>
+          <input id="preferencies" class="escriu" type="range" min="1" max="4" step="1" value="1"></input>        </div>
+          <p style="font-size: 1em; margin-top: 3px; margin-bottom: 30px;">The higher, the less data you share</p>
         <div class="field in">
-          <h1 class="camp">Privacitat</h1>
-          <input id="preferencies" class="escriu" type="text" placeholder=" Preferència de seguretat"></input>
-        </div>
-        <div class="field in">
-          <button id="transaction" class="transaction_button transaction">Consulta transacció</button>
-            <input id="IDTransaccio" class="escriu" type="text" placeholder=" Indica l'ID de la transacció"></input>
+          <button id="transaction" class="button transaction">Recover Wallet</button>
+            <!-- <input id="IDTransaccio" class="escriu" type="text"></input> -->
         </div>
         <div id="consultaTransaccio" style="display: none;">
           
         </div>
-        <button id="consulta" class="consulta_button consulta">Consulta consentiment</button>
-        <button id="boto_aplica" class="button aplica">Aplica</button>
+        <button id="consulta" class="consulta_button consulta">Consents Query</button>
+        <button id="boto_aplica" class="button aplica">Apply</button>
       </div>
     </div>
-    <div id="transaccions" style="display: none; width: 100%;text-align: center;">
+    <div id="transaccions" style="display: none; width: 100%; text-align: center;">
       <div class="consent-content">
-        <p><b>Consentiments</b></p>
-        <button id="tornar" class="back_button torna">Tornar</button>
-        <ul id="llista_consent">
-        </ul>
+        <p><b>Consents Managed</b></p>
+        <button id="tornar" class="back_button torna">Back</button>
+
+        <div class="list-container">
+          <ul id= "llista_consent" class="custom-scroll-list">
+          </ul>
+        </div>
+        
+        
       </div>
     </div>
 <script src="../web3.min.js"></script>

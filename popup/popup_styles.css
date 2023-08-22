@@ -12,8 +12,14 @@ html, body {
     padding-bottom: 20px;
     
   }
+  .field2 {
+    font-size: 0.5em;
+    padding-left: 5px;
+    
+  }
   div p {
       text-align: center;
+      font-size: 1.5em;
   }
   .popup-content {
     width: 100%;
@@ -36,7 +42,7 @@ html, body {
     background: linear-gradient(349deg, rgba(255,255,255,1) 0%, rgba(50,195,255,1) 0%, rgba(255,255,255,1) 100%);
   }
   .escriu{
-      width: 69%;
+      width: 60%;
       padding-right: 10px;
       padding-left: 0px;
       border-radius: 10px;
@@ -44,7 +50,7 @@ html, body {
       height: 37px;
   }
   .camp{
-      width: 31%;;
+      width: 40%;;
   }
   .in{
         width: 100%;
@@ -54,7 +60,7 @@ html, body {
   }
   button {
       font-family: inherit;
-      font-size: 1.5em;
+      font-size: 1em;
       padding: 10px;
       width: 60%;
       text-align: center;
@@ -69,11 +75,28 @@ html, body {
       border-radius: 5px;
   }
   .consulta_button {
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 10px;
     width: 55%;
     text-align: center;
+    font-weight: bolder;
 }
+
+.info_button {
+  font-size: 0.9em;
+  padding: 3px 10px;
+  width: 23%;
+  text-align: center;
+  font-weight: bolder;
+  margin-left: 5px;
+}
+
+.info {
+  background-color: #295ce9;
+  margin-bottom: 7px;
+
+}
+
 .transaction_button {
   font-size: 1.7em;
   padding-left: 10px;
@@ -88,9 +111,15 @@ html, body {
   width: 30%;
   text-align: center;
 }
+
+
 .transaction {
   background-color: #cce929;
-  margin-bottom: 7px;
+  padding: 10px;
+  width: 55%;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2.5em;
 
 }
 .transaction:hover {
@@ -115,6 +144,12 @@ html, body {
   .aplica {
     background-color: #18b913;
     margin-bottom: 7px;
+    padding: 10px;
+    width: 55%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.2em;
+    
 
   }
   .aplica:hover {
@@ -124,3 +159,39 @@ html, body {
   ul li {
     margin-bottom: 5px;
   }
+
+  .list-container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .custom-scroll-list {
+    list-style: none;
+    padding: 0;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  /* For Firefox */
+  .custom-scroll-list {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+  }
+  
+  .custom-scroll-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scroll-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .custom-scroll-list::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  

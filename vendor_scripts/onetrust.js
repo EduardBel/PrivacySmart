@@ -1,14 +1,14 @@
 async function onetrust(preferencies) {
     return new Promise(async (resolve) => {
     if(document.cookie.match("PluginTFG")){
-        console.log("Info Plugin Eduard: les cookies d'aquest lloc ja havien estat manegades")
+        console.log("PrivacySmart: this website's cookies were already managed")
         resolve(0)
     } 
     else{
             if(preferencies==4){
                 await waitUntilFoundAndClick("#onetrust-accept-btn-handler");    //acceptem tot
                 setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                console.log("Info Plugin Eduard: hem acceptat les cookies per tu")
+                console.log("PrivacySmart: cookies have been accepted for you")
                 resolve(1)
             }
             else {  
@@ -96,7 +96,7 @@ async function onetrust(preferencies) {
 
                             await waitUntilFoundAndClick(".save-preference-btn-handler");   //apliquem la configuracio
                             setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                            console.log("Info Plugin Eduard: hem acceptat les cookies però denegat els vendors per tu")
+                            console.log("PrivacySmart: we accepted the cookies but denied vendors for you")
                             resolve(1)
                             
                         }
@@ -164,7 +164,7 @@ async function onetrust(preferencies) {
 
                             await waitUntilFoundAndClick(".save-preference-btn-handler");   //apliquem la configuracio
                             setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                            console.log("Info Plugin Eduard: hem denegat els vendors i les cookies de perfil per tu")
+                            console.log("PrivacySmart: we denied vendors and profile cookies for you")
                             resolve(1)            
                         }
                         else{   //preferencies = 1 rebutjar TOT
@@ -230,7 +230,7 @@ async function onetrust(preferencies) {
 
                             await waitUntilFoundAndClick(".save-preference-btn-handler");   //apliquem la configuracio
                             setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                            console.log("Info Plugin Eduard: hem denegat les cookies per tu")
+                            console.log("PrivacySmart: cookies have been refused for you")
                             resolve(1)
                         }
                     }
@@ -290,7 +290,7 @@ async function onetrust(preferencies) {
 
                             await waitUntilFoundAndClick(".save-preference-btn-handler");   //apliquem la configuracio
                             setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                            console.log("Info Plugin Eduard: hem acceptat les cookies però denegat els vendors per tu")
+                            console.log("PrivacySmart: we accepted the cookies but denied vendors for you")
                             resolve(1)
                             
                         }
@@ -350,7 +350,7 @@ async function onetrust(preferencies) {
 
                             await waitUntilFoundAndClick(".save-preference-btn-handler");   //apliquem la configuracio
                             setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                            console.log("Info Plugin Eduard: hem denegat els vendors i les cookies de perfil per tu")
+                            console.log("PrivacySmart: we denied vendors and profile cookies for you")
                             resolve(1)            
                         }
                         else{   //preferencies = 1 rebutjar TOT
@@ -408,7 +408,7 @@ async function onetrust(preferencies) {
 
                             await waitUntilFoundAndClick(".save-preference-btn-handler");   //apliquem la configuracio
                             setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                            console.log("Info Plugin Eduard: hem denegat les cookies per tu")
+                            console.log("PrivacySmart: cookies have been refused for you")
                             resolve(1)
                         }
                     }                   

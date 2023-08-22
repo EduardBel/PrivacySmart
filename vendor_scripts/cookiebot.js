@@ -1,7 +1,7 @@
 async function cookiebot(preferencies) {  // falta afegir nivells 2 i 3
-    console.log("entra cookiebot")
+    console.log("detects cookiebot")
     if(document.cookie.match("CookieConsent")){
-        console.log("Info Plugin Eduard: les cookies d'aquest lloc ja havien estat manegades")
+        console.log("PrivacySmart: this website's cookies were already managed")
         return 0
     } 
     else{
@@ -18,7 +18,7 @@ async function cookiebot(preferencies) {  // falta afegir nivells 2 i 3
             //document.querySelector('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection').click();   //permetem la seleccio
             
         }
-        else console.log("Vendors NO trobats")
+        else console.log("Vendors NOT found")
 
 
 

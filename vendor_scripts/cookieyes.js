@@ -2,7 +2,7 @@ async function cookieyes(preferencies) {
     return new Promise(async (resolve) => {
 
     if(document.cookie.match("PluginTFG")){
-        console.log("Info Plugin Eduard: les cookies d'aquest lloc ja havien estat manegades")
+        console.log("PrivacySmart: this website's cookies were already managed")
         return 0
     } 
     else{
@@ -10,13 +10,13 @@ async function cookieyes(preferencies) {
             if(preferencies==4){
                 await waitUntilFoundAndClick(".cookie_action_close_header")  //acceptem tot
                 setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                console.log("Info Plugin Eduard: hem acceptat les cookies per tu")
+                console.log("PrivacySmart: cookies have been accepted for you")
                 resolve(1);
             }
             else {
                 if(document.querySelector('.cli_settings_button')== null){
                         document.getElementById('cookie-law-info-bar').style.position="relative"    //fa que s'amagui el banner
-                        console.log("Info Plugin Eduard: com sols es pot acceptar, hem amagat el banner")
+                        console.log("PrivacySmart: this website's cookies can't be managed, so we hid the banner")
                         resolve(0);   
                 } 
                 else{
@@ -37,7 +37,7 @@ async function cookieyes(preferencies) {
                         
                         await waitUntilFoundAndClick("#wt-cli-privacy-save-btn");   //apliquem la configuracio
                         setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                        console.log("Info Plugin Eduard: hem acceptat les cookies però denegat els vendors per tu")
+                        console.log("PrivacySmart: we accepted the cookies but denied vendors for you")
                         resolve(1);
                         
                     }
@@ -49,13 +49,13 @@ async function cookieyes(preferencies) {
 
                         await waitUntilFoundAndClick("#wt-cli-privacy-save-btn");   //apliquem la configuracio
                         setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                        console.log("Info Plugin Eduard: hem denegat els vendors i les cookies de perfil per tu")
+                        console.log("PrivacySmart: we denied vendors and profile cookies for you")
                         resolve(1);             
                     }
                     else{   //preferencies = 1 rebutjar TOT
                         await waitUntilFoundAndClick("#wt-cli-privacy-save-btn");   //apliquem la configuracio
                         setCookie("PluginTFG", "1", 365);   //creem cookie propia per saber que s'han manegat les cookies
-                        console.log("Info Plugin Eduard: hem denegat les cookies per tu")
+                        console.log("PrivacySmart: cookies have been refused for you")
                         resolve(1);
                     }
                 } 

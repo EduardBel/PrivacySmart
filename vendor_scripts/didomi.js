@@ -1,13 +1,13 @@
 async function didomi(preferencies) {
     if(document.cookie.match("euconsent-v2")){
-        console.log("Info Plugin Eduard: les cookies d'aquest lloc ja havien estat manegades")
+        console.log("PrivacySmart: this website's cookies were already managed")
         return 0
     } 
     else{
         if(preferencies==4){
             await waitUntilFoundAndClick('#didomi-notice-agree-button');  //acceptem tot
             if(document.cookie.match("euconsent-v2")){
-                console.log("Info Plugin Eduard: hem acceptat les cookies per tu")
+                console.log("PrivacySmart: cookies have been accepted for you")
                 return 1
             }
         }
@@ -21,7 +21,7 @@ async function didomi(preferencies) {
                 await waitUntilFoundAndClick('[aria-describedby="didomi-consent-popup-information-save"]')  //guardem
                 
                 if(document.cookie.match("euconsent-v2")){
-                    console.log("Info Plugin Eduard: hem acceptat les cookies però denegat els vendors per tu")
+                    console.log("PrivacySmart: we accepted the cookies but denied vendors for you")
                     return 1
                 } 
             }
@@ -48,16 +48,17 @@ async function didomi(preferencies) {
                 await waitUntilFoundAndClick('[aria-describedby="didomi-consent-popup-information-save"]')  //guardem
                 
                 if(document.cookie.match("euconsent-v2")){
-                    console.log("Info Plugin Eduard: hem denegat els vendors i les cookies de perfil per tu")
+                    console.log("PrivacySmart: we denied vendors and profile cookies for you")
                     return 1
                 }                
             }
             else{   //preferencies = 1 rebutjar TOT
                 await waitUntilFoundAndClick('.didomi-components-radio .didomi-components-radio__option--unselected:first-child');  //fem que no a tot
                 await waitUntilFoundAndClick('[aria-describedby="didomi-consent-popup-information-save"]')  //guardem
+                console.log("PrivacySmart: test")
 
                 if(document.cookie.match("euconsent-v2")){
-                    console.log("Info Plugin Eduard: hem denegat les cookies per tu")
+                    console.log("PrivacySmart: cookies have been refused for you")
                     return 1
                 } 
             }
