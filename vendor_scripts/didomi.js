@@ -4,6 +4,7 @@ async function didomi(preferencies) {
         return 0
     } 
     else{
+
         if(preferencies==4){
             await waitUntilFoundAndClick('#didomi-notice-agree-button');  //acceptem tot
             if(document.cookie.match("euconsent-v2")){
@@ -55,10 +56,9 @@ async function didomi(preferencies) {
             else{   //preferencies = 1 rebutjar TOT
                 await waitUntilFoundAndClick('.didomi-components-radio .didomi-components-radio__option--unselected:first-child');  //fem que no a tot
                 await waitUntilFoundAndClick('[aria-describedby="didomi-consent-popup-information-save"]')  //guardem
-                console.log("PrivacySmart: test")
 
                 if(document.cookie.match("euconsent-v2")){
-                    console.log("PrivacySmart: cookies have been refused for you")
+                        console.log("PrivacySmart: cookies have been refused for you")
                     return 1
                 } 
             }

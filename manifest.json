@@ -1,16 +1,16 @@
 {
 
     "manifest_version": 2,
-    "name": "Plugin TFG",
+    "name": "PrivacySmart",
     "version": "1.0",
     
-    "description": "Canviant manera de detectar vendor.",
+    "description": "Update for DPM 2023.",
     "icons": {
       "48": "icons/border-48.png"
     },
     "browser_action": {
       "default_icon": "icons/border-48.png",
-      "default_title": "TFG Eduard",
+      "default_title": "PrivacySmart",
       "default_popup": "popup/index.html",
       "browser_style": true
     },  
