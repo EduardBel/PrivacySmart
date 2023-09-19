@@ -8,10 +8,11 @@
     <div id="contingut" style="display: block;">
       <div class="popup-content" id="popup-content">
         <p><b>PrivacySmart</b></p>
-        <div class="field in">
+        <!-- <div class="field in">
             <h1 class="camp">Add New Key Pair</h1>
             <input id="wallet" class="escriu" type="text" placeholder=" Insert Secret key"></input>
-        </div>
+        </div> -->
+        <p id="publicKeyStatus">Public key: not set yet</p>
         <div class="field2 in">
           <h1 class="camp">Privacy Level</h1>
           <input id="preferencies" class="escriu" type="range" min="1" max="4" step="1" value="1"></input>        </div>
@@ -37,6 +38,31 @@
           </ul>
         </div>
         
+        
+      </div>
+    </div>
+    <div id="claus" style="display: none; width: 100%; text-align: center;">
+      <div class="consent-content">
+        <p><b>Keys management</b></p>
+        <button id="tornar" class="back_button torna">Back</button>
+
+
+        <div class="field in">
+          <h1 class="camp"><b>Add New Secret Key</b></h1>
+          <input id="wallet" class="escriu" type="text" placeholder=" Insert Secret key"></input>
+        </div>
+        <div class="field in">
+          <h1 class="camp">Add New Public Key</h1>
+          <input id="publica" class="escriu" type="text" placeholder=" Insert Public key"></input>
+        </div>
+
+        <div class="field in">
+          <h1 class="camp">Add Mnemonic Words</h1>
+          <input id="mnemonic" class="escriu" type="text" placeholder=" Insert Mnemonic Words"></input>
+        </div>
+        <button id="recover_wallet" class="button save_keys">Recover Wallet</button>
+        <button id="new_key_pair" class="consulta_button new_pair">New Key Pair</button>
+
         
       </div>
     </div>
