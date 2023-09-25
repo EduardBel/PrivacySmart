@@ -221,4 +221,12 @@ html, body {
   .custom-scroll-list::-webkit-scrollbar-thumb:hover {
     background-color: #555;
   }
-  
+
+#claus .button,
+#claus .consulta_button {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+}
+#publicKeyStatus {
+  font-size: 13px; /* You can adjust the size as needed */
+}

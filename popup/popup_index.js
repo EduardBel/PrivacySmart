@@ -130,7 +130,11 @@ browser.storage.local.get(['wallet'], function(result) {  //comprovem al storage
   if (typeof(result.wallet) != "undefined")document.getElementById("wallet").value = result.wallet; //en cas que si, introduim el valor dins el camp de text
 });
 browser.storage.local.get(['publica'], function(result) {  //comprovem al storage si s'ha creat la parella clau-valor de wallet
-  if (typeof(result.publica) != "undefined")document.getElementById("publica").value = result.publica; //en cas que si, introduim el valor dins el camp de text
+  if (typeof(result.publica) != "undefined"){
+    document.getElementById("publica").value = result.publica; //en cas que si, introduim el valor dins el camp de text
+    var publicKeyStatus = document.getElementById("publicKeyStatus");
+    publicKeyStatus.textContent = "Public key: "+ result.publica;
+  }
 });
 browser.storage.local.get(['mnemonic'], function(result) {  //comprovem al storage si s'ha creat la parella clau-valor de wallet
   if (typeof(result.mnemonic) != "undefined")document.getElementById("mnemonic").value = result.mnemonic; //en cas que si, introduim el valor dins el camp de text
